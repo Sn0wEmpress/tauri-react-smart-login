@@ -1,0 +1,38 @@
+/* Global styles for window roundness */
+:root {
+  --window-border-radius: 8px;
+}
+
+/* Reset all backgrounds to transparent */
+html, body, #root {
+  background-color: transparent !important;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Apply border radius to all container elements */
+body, #root, .app-container {
+  border-radius: var(--window-border-radius);
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Make sure all content respects the rounded corners */
+.app-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: #2f2f2f;
+  /* Clip the content to the rounded corners */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' rx='8' ry='8' fill='%23000'/%3E%3C/svg%3E");
+  mask: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' rx='8' ry='8' fill='%23000'/%3E%3C/svg%3E");
+}

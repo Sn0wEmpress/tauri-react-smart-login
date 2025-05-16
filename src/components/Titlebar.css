@@ -1,0 +1,96 @@
+.titlebar {
+  height: 32px;
+  background: #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+  color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.titlebar-drag-region {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  height: 100%;
+  -webkit-app-region: drag;
+}
+
+.window-title {
+  margin-left: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.window-controls {
+  display: flex;
+  height: 100%;
+  -webkit-app-region: no-drag;
+  position: relative;
+  z-index: 2000;
+  margin-left: auto; /* Push controls to the right */
+}
+
+.window-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: #ffffff;
+  cursor: pointer !important;
+  transition: background-color 0.2s, color 0.2s;
+  z-index: 2001;
+  -webkit-app-region: no-drag;
+  padding: 0;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  border-radius: 0; /* Make buttons square by default */
+  box-shadow: none; /* Remove shadow */
+}
+
+.window-control:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.window-control:active {
+  transform: scale(0.96);
+  box-shadow: none; /* Ensure no shadow on active state */
+}
+
+.window-control.minimize:hover {
+  background-color: #0078d7;
+}
+
+.window-control.maximize:hover {
+  background-color: #0078d7;
+}
+
+.window-control.close {
+  border-top-right-radius: 8px; /* Round only the top-right corner of close button */
+}
+
+.window-control.close:hover {
+  background-color: #e81123;
+}
+
+.window-control svg {
+  fill: currentColor;
+  stroke: currentColor;
+  pointer-events: none;
+}
