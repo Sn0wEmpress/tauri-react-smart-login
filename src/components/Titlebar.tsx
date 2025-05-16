@@ -59,9 +59,9 @@ const Titlebar = () => {
     };
 
     return (
-        <div className="h-8 bg-[#1a1a1a] flex justify-between items-center select-none text-white fixed top-0 left-0 right-0 z-10 rounded-t-lg">
+        <div className="h-8 bg-[#1a1a1a] flex justify-between items-center select-none text-white z-10 rounded-t-lg">
             <div className="flex items-center flex-grow h-full [-webkit-app-region:drag]">
-                <div className="ml-3 text-sm font-medium">Jauri App</div>
+                <div className="ml-3 text-sm font-medium">Jiren App</div>
             </div>
             <div className="flex h-full [-webkit-app-region:no-drag] relative z-20 ml-auto">
                 <button

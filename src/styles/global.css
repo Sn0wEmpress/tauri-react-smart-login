@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
+@theme {
+  /* Colors */
+  --color-dark-100: #e5e7eb;
+  --color-dark-200: #d1d5db;
+  --color-dark-300: #9ca3af;
+  --color-dark-400: #4b5563;
+  --color-dark-500: #374151;
+  --color-dark-600: #1f2937;
+  --color-dark-700: #111827;
+  --color-dark-800: #030712;
+  --color-dark-900: #000000;
+  
+  --color-primary-100: #bfdbfe;
+  --color-primary-500: #3b82f6;
+  --color-primary-400: #2563eb;
+  --color-primary-300: #1d4ed8;
+  --color-primary-900: #dc2626;
+}
+
 @layer base {
   :root {
     --window-border-radius: 8px;
@@ -11,6 +30,18 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /* ScrollBar CSS */
+  ::-webkit-scrollbar {
+    background: transparent;
+    height: 8px;
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #646464, #646464);
+    border-radius: 10px;
+  }
+
   /* Reset all backgrounds to transparent */
   html, body, #root {
     @apply bg-transparent;
@@ -18,12 +49,12 @@
   }
 
   html, body {
-    @apply m-0 p-0 h-screen w-screen overflow-hidden;
+    @apply m-0 p-0 h-screen w-screen;
   }
 
   /* Apply border radius to all container elements */
   body, #root {
-    @apply rounded-lg overflow-hidden h-screen w-screen;
+    @apply rounded-lg h-screen w-screen;
   }
 
   /* Default color scheme */
@@ -37,5 +68,71 @@
     :root {
       @apply text-[#f6f6f6] bg-[#2f2f2f];
     }
+  }
+}
+
+@layer components {
+  .centered-flex {
+      @apply flex items-center justify-center;
+  }
+  
+  .fixed-container {
+      @apply relative w-[400px] h-[580px];
+  }
+
+  .form-slide {
+      @apply absolute inset-0 w-full transition-all duration-700 ease-in-out transform-gpu;
+  }
+
+  .form-input {
+      @apply block outline-none w-full 
+      text-base text-white mt-4 mb-1.5 
+      bg-transparent py-2.5 pr-8 pl-2
+      border-b border-dark-400 placeholder-dark-300
+      focus:border-primary-500;
+  }
+
+  .input-icon {
+      @apply absolute text-base right-2.5 bottom-3.5 text-dark-300
+      transition-all duration-300 pointer-events-none;
+  }
+
+  /* Checkbox styles */
+  .custom-checkbox {
+      @apply relative w-5 h-5 border-2 rounded-md 
+      border-dark-300 bg-dark-600 
+      transition-all duration-300 ease-out
+      hover:border-primary-500 cursor-pointer;
+  }
+
+  .custom-checkbox::before {
+      content: '';
+      @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+      w-0 h-0 bg-primary-500
+      transition-all duration-300 ease-out rounded-sm;
+  }
+
+  .custom-checkbox::after {
+      content: '';
+      @apply absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2
+      w-[6px] h-[10px] border-r-2 border-b-2 border-white
+      transition-all duration-300 ease-out
+      opacity-0 rotate-45 scale-0;
+  }
+
+  input[type="checkbox"]:checked + .custom-checkbox {
+      @apply border-primary-500;
+  }
+
+  input[type="checkbox"]:checked + .custom-checkbox::before {
+      @apply w-full h-full;
+  }
+
+  input[type="checkbox"]:checked + .custom-checkbox::after {
+      @apply opacity-100 scale-100;
+  }
+
+  input[type="checkbox"]:focus + .custom-checkbox {
+      @apply ring-2 ring-primary-500/30;
   }
 }
