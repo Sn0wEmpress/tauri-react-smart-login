@@ -25,7 +25,9 @@
         "minHeight": 200,
         "shadow": false,
         "skipTaskbar": false,
-        "visible": true
+        "visible": true,
+        "alwaysOnTop": true,
+        "center": true
       }
     ],
     "security": {

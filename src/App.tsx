@@ -1,56 +1,45 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
 import Titlebar from "./components/Titlebar";
 import "./styles/global.css";
-import "./App.css";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+    const [greetMsg, setGreetMsg] = useState("");
+    const [name, setName] = useState("");
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
+    async function greet() {
+        // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
+        setGreetMsg(await invoke("greet", { name }));
+    }
 
-  return (
-    <div className="app-container">
-      <Titlebar />
-      <main className="container">
-      <h1>Welcome to Tauri + React</h1>
-
-      <div className="row">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
-
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
-    </main>
-    </div>
-  );
+    return (
+        <div className="h-screen w-screen bg-[#2f2f2f] rounded-lg overflow-hidden">
+            <Titlebar />
+            <main className="mx-auto pt-8 flex flex-col justify-center items-center text-center h-[calc(100vh-32px)] w-full overflow-auto rounded-b-lg">
+                <form
+                    className="flex justify-center"
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        greet();
+                    }}
+                >
+                    <input
+                        id="greet-input"
+                        onChange={(e) => setName(e.currentTarget.value)}
+                        placeholder="Enter a name..."
+                        className="rounded-lg border border-transparent px-6 py-2.5 text-base font-medium text-[#0f0f0f] bg-white shadow-sm transition-colors mr-1.5 outline-none dark:text-white dark:bg-[#0f0f0f98] hover:border-[#396cd8] dark:hover:border-[#396cd8]"
+                    />
+                    <button
+                        type="submit"
+                        className="rounded-lg border border-transparent px-6 py-2.5 text-base font-medium text-[#0f0f0f] bg-white shadow-sm transition-colors cursor-pointer outline-none hover:border-[#396cd8] active:border-[#396cd8] active:bg-[#e8e8e8] dark:text-white dark:bg-[#0f0f0f98] dark:active:bg-[#0f0f0f69]"
+                    >
+                        Greet
+                    </button>
+                </form>
+                <p className="mt-4 text-[#0f0f0f] dark:text-white">{greetMsg}</p>
+            </main>
+        </div>
+    );
 }
 
 export default App;
