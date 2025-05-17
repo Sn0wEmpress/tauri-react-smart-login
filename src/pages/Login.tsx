@@ -31,70 +31,35 @@ const Login = () => {
     }
   };
 
-  const animationSpeed = 100;
-  const trailDuration = 300;
-  const returnDelay = 500;
+  const useElementRef = <T extends HTMLElement>(overrides: Partial<{
+    enabled: boolean;
+    moveDistance: { x: string; y: string };
+    animationSpeed: number;
+    trailDuration: number;
+    returnDelay: number;
+  }> = {}) => {
+    return useUltraInstinct<T>({
+      enabled: ultraMode,
+      moveDistance: ultraMode ? { x: '40%', y: '40%' } : { x: '0%', y: '0%' },
+      animationSpeed: 100,
+      trailDuration: 300,
+      returnDelay: 500,
+      ...overrides
+    });
+  };
 
-  const welcomeRef = useUltraInstinct<HTMLHeadingElement>({
-    enabled: ultraMode,
-    moveDistance: { x: '40%', y: '40%' },
-    animationSpeed,
-    trailDuration,
-    returnDelay
-  });
-
-  const usernameRef = useUltraInstinct<HTMLInputElement>({
-    enabled: ultraMode,
-    moveDistance: { x: '40%', y: '40%' },
-    animationSpeed,
-    trailDuration,
-    returnDelay
-  });
-
-  const passwordRef = useUltraInstinct<HTMLInputElement>({
-    enabled: ultraMode,
-    moveDistance: { x: '40%', y: '40%' },
-    animationSpeed,
-    trailDuration,
-    returnDelay
-  });
-
-  const signInRef = useUltraInstinct<HTMLButtonElement>({
-    enabled: ultraMode,
-    moveDistance: { x: '40%', y: '40%' },
-    animationSpeed,
-    trailDuration,
-    returnDelay
-  });
-
-  const rememberRef = useUltraInstinct<HTMLLabelElement>({
-    enabled: ultraMode,
-    moveDistance: { x: '40%', y: '40%' },
-    animationSpeed,
-    trailDuration,
-    returnDelay
-  });
-
-  const forgotRef = useUltraInstinct<HTMLAnchorElement>({
-    enabled: ultraMode,
-    moveDistance: { x: '40%', y: '40%' },
-    animationSpeed,
-    trailDuration,
-    returnDelay
-  });
-
-  const signUpRef = useUltraInstinct<HTMLParagraphElement>({
-    enabled: ultraMode,
-    moveDistance: { x: '40%', y: '40%' },
-    animationSpeed,
-    trailDuration,
-    returnDelay
-  });
+  const welcomeRef = useElementRef<HTMLHeadingElement>();
+  const usernameRef = useElementRef<HTMLInputElement>();
+  const passwordRef = useElementRef<HTMLInputElement>();
+  const signInRef = useElementRef<HTMLButtonElement>({ animationSpeed: 50, trailDuration: 200, returnDelay: 0 });
+  const rememberRef = useElementRef<HTMLLabelElement>();
+  const forgotRef = useElementRef<HTMLAnchorElement>();
+  const signUpRef = useElementRef<HTMLParagraphElement>();
 
   return (
     <div className="flex flex-col items-center justify-center w-full min-h-full py-4 overflow-y-auto">
       <div className="w-full max-w-md px-8 py-6 rounded-lg">
-        <h2 ref={welcomeRef} data-ultra-instinct="true" className="mb-6 text-2xl font-bold text-center text-white">Welcome to Jiren App</h2>
+        <h2 ref={welcomeRef} data-ultra-instinct="true" className="mb-6 text-2xl font-bold text-center text-white">Smart Login</h2>
 
         {error && (
           <div className="p-3 mb-4 text-sm text-red-500 bg-red-200 bg-opacity-10 rounded-md">
