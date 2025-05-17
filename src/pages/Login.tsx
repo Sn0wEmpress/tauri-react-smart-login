@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useUltraInstinct } from '../utils/ultraInstinct';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -8,6 +9,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [ultraMode, _setUltraMode] = useState(true);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,77 +17,78 @@ const Login = () => {
     setError('');
 
     try {
-      // Here you would typically call your authentication API
-      // For example: await invoke('login', { email, password });
-      console.log('Login attempt with:', { username, password, rememberMe });
-
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // Handle successful login
-      // You might want to store auth tokens, redirect, etc.
+      if (username === '123' && password === '123') {
+        navigate('/greeting');
+      } else {
+        setError('Invalid username or password. Please try again.');
+      }
     } catch (err) {
       setError('Invalid username or password. Please try again.');
-      console.error('Login error:', err);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const animationSpeed = 100;
+  const trailDuration = 300;
+  const returnDelay = 500;
+
   const welcomeRef = useUltraInstinct<HTMLHeadingElement>({
     enabled: ultraMode,
     moveDistance: { x: '40%', y: '40%' },
-    animationSpeed: 100,
-    trailDuration: 300,
-    returnDelay: 500
+    animationSpeed,
+    trailDuration,
+    returnDelay
   });
 
   const usernameRef = useUltraInstinct<HTMLInputElement>({
     enabled: ultraMode,
     moveDistance: { x: '40%', y: '40%' },
-    animationSpeed: 100,
-    trailDuration: 300,
-    returnDelay: 500
+    animationSpeed,
+    trailDuration,
+    returnDelay
   });
 
   const passwordRef = useUltraInstinct<HTMLInputElement>({
     enabled: ultraMode,
     moveDistance: { x: '40%', y: '40%' },
-    animationSpeed: 100,
-    trailDuration: 300,
-    returnDelay: 500
+    animationSpeed,
+    trailDuration,
+    returnDelay
   });
 
   const signInRef = useUltraInstinct<HTMLButtonElement>({
     enabled: ultraMode,
     moveDistance: { x: '40%', y: '40%' },
-    animationSpeed: 100,
-    trailDuration: 300,
-    returnDelay: 500
+    animationSpeed,
+    trailDuration,
+    returnDelay
   });
 
   const rememberRef = useUltraInstinct<HTMLLabelElement>({
     enabled: ultraMode,
     moveDistance: { x: '40%', y: '40%' },
-    animationSpeed: 100,
-    trailDuration: 300,
-    returnDelay: 500
+    animationSpeed,
+    trailDuration,
+    returnDelay
   });
 
   const forgotRef = useUltraInstinct<HTMLAnchorElement>({
     enabled: ultraMode,
     moveDistance: { x: '40%', y: '40%' },
-    animationSpeed: 100,
-    trailDuration: 300,
-    returnDelay: 500
+    animationSpeed,
+    trailDuration,
+    returnDelay
   });
 
   const signUpRef = useUltraInstinct<HTMLParagraphElement>({
     enabled: ultraMode,
     moveDistance: { x: '40%', y: '40%' },
-    animationSpeed: 100,
-    trailDuration: 300,
-    returnDelay: 500
+    animationSpeed,
+    trailDuration,
+    returnDelay
   });
 
   return (
@@ -94,7 +97,7 @@ const Login = () => {
         <h2 ref={welcomeRef} data-ultra-instinct="true" className="mb-6 text-2xl font-bold text-center text-white">Welcome to Jiren App</h2>
 
         {error && (
-          <div className="p-3 mb-4 text-sm text-red-500 bg-red-100 bg-opacity-10 rounded-md">
+          <div className="p-3 mb-4 text-sm text-red-500 bg-red-200 bg-opacity-10 rounded-md">
             {error}
           </div>
         )}
@@ -152,7 +155,7 @@ const Login = () => {
             ref={signInRef}
             data-ultra-instinct="true"
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || ultraMode}
             className={`w-full px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''
               }`}
           >

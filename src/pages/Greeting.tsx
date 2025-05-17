@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
+import { useNavigate } from "react-router-dom";
 
 const Greeting = () => {
     const [greetMsg, setGreetMsg] = useState("");
     const [name, setName] = useState("");
+    const navigate = useNavigate();
+    
+    const handleLogout = () => {
+        navigate("/login");
+    };
 
     async function greet() {
         // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
@@ -31,6 +37,12 @@ const Greeting = () => {
                     className="rounded-lg border border-transparent px-6 py-2.5 text-base font-medium text-[#0f0f0f] bg-white shadow-sm transition-colors cursor-pointer outline-none hover:border-[#396cd8] active:border-[#396cd8] active:bg-[#e8e8e8] dark:text-white dark:bg-[#0f0f0f98] dark:active:bg-[#0f0f0f69]"
                 >
                     Greet
+                </button>
+                <button
+                    onClick={handleLogout}
+                    className="rounded-lg border border-transparent px-6 py-2 ml-1.5 text-base font-medium text-white bg-red-600 shadow-sm transition-colors cursor-pointer outline-none hover:bg-red-700 active:bg-red-800"
+                >
+                    Logout
                 </button>
             </form>
             <p className="mt-4 text-[#0f0f0f] dark:text-white">{greetMsg}</p>
