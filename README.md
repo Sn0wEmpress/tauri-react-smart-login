@@ -6,6 +6,10 @@
 
 A modern, secure, and animated login application built with Tauri, React, and TypeScript. Features a beautiful UI with smooth animations and a clean user experience.
 
+## 📦 Releases
+
+Download the latest version of the application from the [Releases](https://github.com/Sn0wEmpress/tauri-react-smart-login/releases) page.
+
 ## ✨ Features
 
 - 🎨 Beautiful, responsive UI with smooth animations
